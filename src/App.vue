@@ -1,17 +1,20 @@
 <!-- START TEMPLATE -->
 <template>
+  <h1>Hola</h1>
 </template>
 <!-- END TEMPLATE -->
 <!-- START SCRIPT -->
 <script setup>
+import { onMounted } from 'vue';
+import {login, newTask} from './api';
 
-import { createClient } from '@supabase/supabase-js'
+onMounted(async () => {
+  //registro();
+  const id = await login();
+  console.log(id.data.user.id);
+  newTask(id.data.user.id,'hola','caracola');
+});
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseKey = import.meta.env.VITE_SUPABASE_KEY
-const supabase = createClient(supabaseUrl, supabaseKey)
-
-console.log(supabase);
 
 </script>
 <!-- END SCRIPT -->
