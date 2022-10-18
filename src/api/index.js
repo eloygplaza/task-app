@@ -6,18 +6,18 @@ const supabaseKey = import.meta.env.VITE_SUPABASE_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 // register in the system
-export const signup = async () => {
+export const signup = async (email, password) => {
   return await supabase.auth.signUp({
-    email: "bewopil@gmail.com",
-    password: "12345678",
+    email: email,
+    password: password,
   });
 };
 
 // login to the system
-export const login = async () => {
+export const login = async (email, password) => {
   return await supabase.auth.signInWithPassword({
-    email: "bewopil@gmail.com",
-    password: "12345678",
+    email: email,
+    password: password,
   });
 };
 
