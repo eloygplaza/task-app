@@ -1,20 +1,24 @@
 <!-- START TEMPLATE -->
 <template>
-  <h1>Hola</h1>
+  <Navbar></Navbar>
+  <RouterView></RouterView>
+  <Footer></Footer>
 </template>
 <!-- END TEMPLATE -->
 <!-- START SCRIPT -->
 <script setup>
 import { onMounted } from 'vue';
-import {login, newTask} from './api';
+import { login, newTask } from './api';
+import { useRoute } from 'vue-router'
+import Navbar from './components/Navbar.vue';
+import Footer from './components/Footer.vue';
 
 onMounted(async () => {
   //registro();
-  const id = await login();
-  console.log(id.data.user.id);
-  newTask(id.data.user.id,'hola','caracola');
+  //const id = await login('bewopil@gmail.com', '12345678');
+  //console.log(id.data.user.id);
+  //newTask(id.data.user.id,'hola','caracola');
 });
-
 
 </script>
 <!-- END SCRIPT -->
