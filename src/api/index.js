@@ -31,11 +31,12 @@ export const newTask = async (id, title, description) => {
 };
 
 // get all tasks from table 'task'
-export const getAllTask = async () => {
+export const getAllTasks = async (userId) => {
   return await supabase
     .from("task")
     .select("*")
-    .order("id", { ascending: "false" });
+    .order("id", { ascending: "false" })
+    .eq("user_id", userId);
 };
 
 // edit desired task providing task 'id'
