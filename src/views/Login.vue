@@ -27,7 +27,7 @@
                     <div class="field">
                         <label class="label">Password</label>
                         <div class="control has-icons-left has-icons-right">
-                            <input v-model="emailPassword" class="input" type="password" placeholder="Introduce tu mejor contraseña" required>
+                            <input v-model="passwordLogin" class="input" type="password" placeholder="Introduce tu mejor contraseña" required>
                             <span class="icon is-small is-left">
                             <i class="fas fa-user"></i>
                             </span>
@@ -39,10 +39,11 @@
 
                     <div class="field is-grouped">
                         <div class="control">
-                            <button type="submit" class="button is-link" @click.prevent="initLogin(emailLogin, emailPassword)">Enviar</button>
+                            <button type="submit" class="button is-link" @click.prevent="initLogin(emailLogin, passwordLogin)">Enviar</button>
                         </div>
                     </div>
                 </form>
+                
             </div>
             
         </div>
@@ -57,23 +58,32 @@ import { ref, watch } from 'vue';
 import { authStore } from '../store/auth';
 
 const useAuthStore = authStore();
-const alreadyLogged = ref(useAuthStore.isAuth);
+let alreadyLogged = ref(useAuthStore.isAuth);
 console.log(alreadyLogged.value);
 
+// vigilamos el store de auth para que nos controle tema logins
+watch(useAuthStore, () => {
+    alreadyLogged.value = useAuthStore.isAuth;
+});
 
-const initLogin = async (emailLogin, emailPassword) => {
-// login supabase
-const res = await login(emailLogin, emailPassword);
-console.log(res);
-// guardar login store
-if(res.data.user != 'undefined') {
-    alreadyLogged.value = true;
-    useAuthStore.login(res.data.user.id, emailLogin, emailPassword);
-}
-}
-
-const initLogout = async () => {
-logout();
+// hace login supabase
+const initLogin = async (emailLogin, passwordLogin) => {
+    // login supabase
+    const res = await login(emailLogin, passwordLogin);
+    console.log(res.data.user);
+    // si no se hace bien el login dara error
+    // guardar login store
+    if(res.data.user != null) {
+        alreadyLogged.value = true;
+        useAuthStore.login(res.data.user.id, emailLogin, passwordLogin);
+        // redirigir al home para que se vean las task del usuario loggeado
+        const oldUrl = window.location.hostname;
+        const port = location.port
+        window.location.replace(`http://${oldUrl}:${port}/task-app/`);
+    }
+    else{
+        alert("No se ha podido hacer login");
+    }
 }
 </script>
 <!-- END SCRIPT -->

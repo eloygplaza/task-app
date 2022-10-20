@@ -13,7 +13,7 @@
                         <div class="field">
                             <label class="label">Email</label>
                             <div class="control has-icons-left has-icons-right">
-                                <input  class="input" type="email" placeholder="Introduce tu mejor correo" value="">
+                                <input v-model="emailSignup" class="input" type="email" placeholder="Introduce tu mejor correo">
                                 <span class="icon is-small is-left">
                                 <i class="fas fa-envelope"></i>
                                 </span>
@@ -26,7 +26,7 @@
                         <div class="field">
                             <label class="label">Password</label>
                             <div class="control has-icons-left has-icons-right">
-                                <input class="input" type="password" placeholder="Introduce tu mejor contraseña" value="">
+                                <input v-model="passwordSignup" class="input" type="password" placeholder="Introduce tu mejor contraseña">
                                 <span class="icon is-small is-left">
                                 <i class="fas fa-user"></i>
                                 </span>
@@ -38,7 +38,7 @@
 
                         <div class="field is-grouped">
                             <div class="control">
-                                <button type="submit" class="button is-link" @click="signup">Enviar</button>
+                                <button type="submit" class="button is-link" @click.prevent="initSignup(emailSignup, passwordSignup)">Enviar</button>
                             </div>
                         </div>
 
@@ -53,7 +53,7 @@
 <!-- END TEMPLATE -->
 <!-- START SCRIPT -->
 <script setup>
-import { login, logout, newTask } from '../api';
+import { signup } from '../api';
 import { ref, watch } from 'vue';
 import { authStore } from '../store/auth';
 
@@ -61,19 +61,12 @@ const useAuthStore = authStore();
 
 const alreadyLogged = ref(useAuthStore.isAuth);
 
-const initLogin = async (emailLogin, emailPassword) => {
+const initSignup = async (emailSignup, passwordSignup) => {
     // login supabase
-    const res = await login(emailLogin, emailPassword);
+    const res = await signup(emailSignup, passwordSignup);
     console.log(res);
-    // guardar login store
-    if(res.data.user != 'undefined') {
-        alreadyLogged.value = true;
-        useAuthStore.login(res.data.user.id, emailLogin, emailPassword);
-    }
-}
-
-const initLogout = async () => {
-    logout();
+    // avisar de que revise el correo
+    alert("¡Ya falta poco! te acabamos de enviar un email para confirmar tu cuenta");
 }
 </script>
 <!-- END SCRIPT -->
