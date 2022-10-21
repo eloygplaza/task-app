@@ -28,5 +28,9 @@ export const taskStore = defineStore("taskStore", {
         }
       });
     },
+    deleteTask(taskId) {
+      const element = this.tasks.data.find((el) => el.id == taskId);
+      this.tasks.data.splice(this.tasks.data.indexOf(element), 1);
+    },
   },
 });
