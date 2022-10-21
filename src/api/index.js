@@ -34,8 +34,8 @@ export const newTask = async (id, title, description) => {
 export const getAllTasks = async (userId) => {
   return await supabase
     .from("task")
-    .select("*")
-    .order("id", { ascending: "false" })
+    .select()
+    .order("created_at", { ascending: "true" })
     .eq("user_id", userId);
 };
 
@@ -50,4 +50,14 @@ export const updateRow = async (idTask) => {
 // logout from the system
 export const logout = async () => {
   return await supabase.auth.signOut();
+};
+
+// mark a task as done
+export const markAsDone = async (idTask) => {
+  return await supabase.from("task").update({ done: true }).eq("id", idTask);
+};
+
+// mark a task as done
+export const deleteTask = async (idTask) => {
+  return await supabase.from("task").delete().eq("id", idTask);
 };
