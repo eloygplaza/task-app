@@ -39,7 +39,7 @@
 
                     <div class="field is-grouped">
                         <div class="control">
-                            <button type="submit" class="button is-link" @click.prevent="initLogin(emailLogin, passwordLogin)">Enviar</button>
+                            <button type="submit" class="button is-link" @click.prevent="initLogin(emailLogin, passwordLogin)">Submit</button>
                         </div>
                     </div>
                 </form>
@@ -54,12 +54,26 @@
 <!-- START SCRIPT -->
 <script setup>
 import { login, logout, newTask } from '../api';
-import { ref, watch } from 'vue';
+import { ref, watch, onMounted } from 'vue';
 import { authStore } from '../store/auth';
 
 const useAuthStore = authStore();
 let alreadyLogged = ref(useAuthStore.isAuth);
 console.log(alreadyLogged.value);
+
+onMounted(() => {
+  console.log(window.location.href.split("/"));
+  if(window.location.href.split("/")[4] != 'login' && window.location.href.split("/")[4] != 'signup'){
+    const app = document.querySelector("#app");
+    console.log(app);
+    app.className += ' no-before';
+  }
+  else {
+    const app = document.querySelector("#app");
+    console.log(app);
+    app.className = '';
+  }
+});
 
 // vigilamos el store de auth para que nos controle tema logins
 watch(useAuthStore, () => {
