@@ -57,7 +57,20 @@ export const markAsDone = async (idTask) => {
   return await supabase.from("task").update({ done: true }).eq("id", idTask);
 };
 
-// mark a task as done
+// delete a task
 export const deleteTask = async (idTask) => {
   return await supabase.from("task").delete().eq("id", idTask);
+};
+
+// update title of a task
+export const updateTitle = async (idTask, title) => {
+  return await supabase.from("task").update({ title: title }).eq("id", idTask);
+};
+
+// update description of a task
+export const updateDescription = async (idTask, description) => {
+  return await supabase
+    .from("task")
+    .update({ description: description })
+    .eq("id", idTask);
 };
