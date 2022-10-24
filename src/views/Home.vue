@@ -1,11 +1,34 @@
 <!-- START TEMPLATE -->
 <template>
 
-        <div v-if="alreadyLogged" class="container mt-3">
+        <div v-if="!alreadyLogged" class="home-background is-flex is-align-items-center is-flex-direction-column">
 
             <div class="columns">
 
-                <div class="column is-6 mx-auto">
+                <div class="column is-12 mt-3">
+                    <p class="title is-2 is-yellow is-warning">Boost productivity with Posty</p>
+                    <p>The secure post-it sharing and productivity solution that employees and IT admins trust</p>
+                    <div class="is-flex is-align-items-center ">
+                        <RouterLink v-if="!alreadyLogged" class="button is-warning" :to="{name: 'signup'}">
+                            <strong>Sign up</strong>
+                        </RouterLink>
+
+                        <RouterLink v-if="!alreadyLogged" class="button is-light" :to="{name: 'login'}">
+                            <strong>Log in</strong>
+                        </RouterLink>
+                    </div>
+
+                </div>
+            </div>
+            
+
+        </div>
+
+        <div class="container mt-3">
+
+            <div class="columns">
+
+                <div v-if="alreadyLogged" class="column is-6 mx-auto">
 
                     <p class="title is-3">New Task</p>
                     <form>
@@ -38,20 +61,20 @@
 
                         <div class="field is-grouped">
                             <div class="control">
-                                <button type="submit" class="button is-link" @click.prevent="initNewTask(useAuthStore.user.id, titleNewTask, descriptionNewTask)">Enviar</button>
+                                <button type="submit" class="button is-link" @click.prevent="initNewTask(useAuthStore.user.id, titleNewTask, descriptionNewTask)">Submit</button>
                             </div>
                         </div>
                     </form>
                 </div>
-
+            
             </div>
 
             <div v-if="isLoaded" class="columns is-multiline">
 
                 <div v-for="task in useTaskStore.tasks.data" class="column is-3 box">
                     <div class="is-flex is-justify-content-center is-flex-direction-column">
-                        <textarea @focusout="initEditTask(task.id)" v-model="task.title" class="title titleCard is-6 taskCards" :style="task.done ? 'text-decoration: line-through;' : ''"></textarea>
-                        <textarea @focusout="initEditTask(task.id)" v-model="task.description" class="descriptionCard is-6 taskCards" :style="task.done ? 'text-decoration: line-through;' : ''"></textarea>
+                        <textarea @focusout="initEditTaskTitle(task.id, task.title)" v-model="task.title" class="title titleCard is-6 taskCards" :style="task.done ? 'text-decoration: line-through;' : ''"></textarea>
+                        <textarea @focusout="initEditTaskDescription(task.id, task.description)" v-model="task.description" class="descriptionCard is-6 taskCards" :style="task.done ? 'text-decoration: line-through;' : ''"></textarea>
                     </div>
 
                     <div class="is-flex is-justify-content-center">
@@ -60,11 +83,7 @@
                                 <i class="fa-solid fa-check"></i>
                             </span>
                         </button>
-                        <button class="button is-info is-outlined">
-                            <span class="icon is-small">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                            </span>
-                        </button>
+                        <!-- TODO crear un estilo css para que al hacer click en borrar la task se absorva en direccion a la basura -->
                         <button class="button is-danger is-outlined" @click="initDeleteTask(task.id)">
                             <span class="icon is-small">
                                 <i class="fa-solid fa-trash-can"></i>
@@ -80,7 +99,7 @@
 <!-- END TEMPLATE -->
 <!-- START SCRIPT -->
 <script setup>
-import { newTask, getAllTasks, markAsDone, deleteTask } from '../api';
+import { newTask, getAllTasks, markAsDone, deleteTask, updateTitle, updateDescription } from '../api';
 import { ref, watch, onMounted } from 'vue';
 import { authStore } from '../store/auth';
 import { taskStore } from '../store/task';
@@ -113,17 +132,14 @@ const loadTasks = async () => {
     useTaskStore.tasks = tasks.value;
     useTaskStore.tasks.data.reverse();
 
-    // añadimos eventos a los title y description de las tares para poder editarlas
-    //addEvents();
-
     // marcamos que todo esta cargado y se puede visualizar
     isLoaded.value = true;
 }
 
 // añadir una nueva tarea
 const initNewTask = async (userId, titleNewTask, descriptionNewTask) => {
-    await newTask(userId, titleNewTask, descriptionNewTask);
     await useTaskStore.insertTask(userId, titleNewTask, descriptionNewTask);
+    await newTask(userId, titleNewTask, descriptionNewTask);
 }
 
 // marcar como hecha una task
@@ -138,10 +154,19 @@ const initDeleteTask = (taskId) => {
     deleteTask(taskId);
 }
 
-const initEditTask = (taskId) => {
+// update title of a task
+const initEditTaskTitle = (taskId, title) => {
+    useTaskStore.updateTitle(taskId, title);
+    updateTitle(taskId, title);
     console.log(taskId);
 }
 
+// update description of a task
+const initEditTaskDescription = (taskId, description) => {
+    useTaskStore.updateDescription(taskId, description);
+    updateDescription(taskId, description);
+    console.log(taskId);
+}
 
 </script>
 <!-- END SCRIPT -->
