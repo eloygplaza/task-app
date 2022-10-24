@@ -32,5 +32,19 @@ export const taskStore = defineStore("taskStore", {
       const element = this.tasks.data.find((el) => el.id == taskId);
       this.tasks.data.splice(this.tasks.data.indexOf(element), 1);
     },
+    updateTitle(taskId, title) {
+      this.tasks.data.find((el) => {
+        if (el.id == taskId) {
+          el.title = title;
+        }
+      });
+    },
+    updateDescription(taskId, description) {
+      this.tasks.data.find((el) => {
+        if (el.id == taskId) {
+          el.description = description;
+        }
+      });
+    },
   },
 });
