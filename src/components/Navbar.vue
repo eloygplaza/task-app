@@ -3,8 +3,8 @@
 
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-            <a class="navbar-item" href="https://bulma.io">
-            <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+            <a class="navbar-item" href="/task-app/">
+                <img src="../assets/logo posty.png">
             </a>
 
             <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -51,7 +51,7 @@
                 <div class="navbar-item">
                     <div class="buttons">
 
-                        <RouterLink v-if="!alreadyLogged" class="button is-primary" :to="{name: 'signup'}">
+                        <RouterLink v-if="!alreadyLogged" class="button is-warning" :to="{name: 'signup'}">
                             <strong>Sign up</strong>
                         </RouterLink>
 
