@@ -4,9 +4,7 @@
     <footer class="footer">
     <div class="content has-text-centered">
         <p>
-        <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
-        <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
-        is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+        With ❤️ by <strong><a href="https://github.com/eloygplaza" target="_blank">Eloy Garcia Plaza</a></strong> // Created with Vue, Bulma and Pinia. // Background image by <a href="https://pixabay.com/es/users/monfocus-2516394/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1925752">Monfocus</a> at <a href="https://pixabay.com/es//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1925752">Pixabay</a>
         </p>
     </div>
     </footer>
