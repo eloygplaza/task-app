@@ -54,7 +54,11 @@ export const logout = async () => {
 
 // mark a task as done
 export const markAsDone = async (idTask) => {
-  return await supabase.from("task").update({ done: true }).eq("id", idTask);
+  const task = await supabase.from("task").select().eq("id", idTask);
+  return await supabase
+    .from("task")
+    .update({ done: !task.data[0].done })
+    .eq("id", idTask);
 };
 
 // delete a task
