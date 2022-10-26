@@ -6,9 +6,9 @@
             <div class="columns">
 
                 <div class="column is-12 mt-3">
-                    <p class="title is-2 is-yellow is-warning">Boost productivity with Posty</p>
+                    <p class="title is-2 has-text-warning home-title">Boost productivity with Posty</p>
                     <p>The secure post-it sharing and productivity solution that employees and IT admins trust</p>
-                    <div class="is-flex is-align-items-center ">
+                    <div class="is-flex is-align-items-center buttons">
                         <RouterLink v-if="!alreadyLogged" class="button is-warning" :to="{name: 'signup'}">
                             <strong>Sign up</strong>
                         </RouterLink>
@@ -71,7 +71,7 @@
 
             <div v-if="isLoaded" class="columns is-multiline">
 
-                <div v-for="task in useTaskStore.tasks.data" class="column is-3 box">
+                <div v-for="task in useTaskStore.tasks.data" class="column is-3 box task-card">
                     <div class="is-flex is-justify-content-center is-flex-direction-column">
                         <textarea @focusout="initEditTaskTitle(task.id, task.title)" v-model="task.title" class="title titleCard is-6 taskCards" :style="task.done ? 'text-decoration: line-through;' : ''"></textarea>
                         <textarea @focusout="initEditTaskDescription(task.id, task.description)" v-model="task.description" class="descriptionCard is-6 taskCards" :style="task.done ? 'text-decoration: line-through;' : ''"></textarea>

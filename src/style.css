@@ -1,12 +1,13 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
 @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css";
 
-.taskCards {
-    border: 0;
-    resize: none;
-}
+
 .navbar-item img {
     max-height: 2.75rem;
+}
+
+.home-title {
+    filter: drop-shadow(2px 2px 2px #333);
 }
 .home-background{
     position: relative; 
@@ -25,4 +26,22 @@
     background-image: url('./assets/note-background.jpg');
     background-color: rgba(0,0,0,0.15);
 }
-#app.no-before:before{content:none;}
+#app.no-before:before {
+    content:none;
+}
+
+.taskCards {
+    border: 0;
+    resize: none;
+}
+.task-card {
+    padding: 50px;
+    transition: transform .2s; /* Animation */
+}
+.task-card:hover {
+    transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+.footer {
+    z-index: 1;
+}
