@@ -3,23 +3,26 @@
 
         <div v-if="!alreadyLogged" class="home-background is-flex is-align-items-center is-flex-direction-column">
 
-            <div class="columns">
+            <div class="container">
+                <div class="columns">
 
-                <div class="column is-12 mt-3">
-                    <p class="title is-2 has-text-warning home-title">Boost productivity with Posty</p>
-                    <p>The secure post-it sharing and productivity solution that employees and IT admins trust</p>
-                    <div class="is-flex is-align-items-center buttons">
-                        <RouterLink v-if="!alreadyLogged" class="button is-warning" :to="{name: 'signup'}">
-                            <strong>Sign up</strong>
-                        </RouterLink>
+                    <div class="column is-full mt-3">
+                        <p class="title is-2 has-text-warning home-title">Boost productivity with Posty</p>
+                        <p>The secure post-it sharing and productivity solution that employees and IT admins trust</p>
+                        <div class="is-flex is-align-items-center buttons">
+                            <RouterLink v-if="!alreadyLogged" class="button is-warning" :to="{name: 'signup'}">
+                                <strong>Sign up</strong>
+                            </RouterLink>
 
-                        <RouterLink v-if="!alreadyLogged" class="button is-light" :to="{name: 'login'}">
-                            <strong>Log in</strong>
-                        </RouterLink>
+                            <RouterLink v-if="!alreadyLogged" class="button is-light" :to="{name: 'login'}">
+                                <strong>Log in</strong>
+                            </RouterLink>
+                        </div>
+
                     </div>
-
                 </div>
             </div>
+            
             
 
         </div>
@@ -69,7 +72,7 @@
             
             </div>
 
-            <div v-if="isLoaded" class="columns is-multiline">
+            <div v-if="isLoaded && alreadyLogged" class="columns is-multiline">
 
                 <div v-for="task in useTaskStore.tasks.data" class="column is-3 box task-card">
                     <div class="is-flex is-justify-content-center is-flex-direction-column">
