@@ -81,7 +81,7 @@ import { ref, watch } from 'vue';
 
 const useAuthStore = authStore();
 let alreadyLogged = ref(useAuthStore.isAuth);
-console.log("estoy logeado: " + alreadyLogged.value);
+//console.log("estoy logeado: " + alreadyLogged.value);
 
 // mirar la variable de login para mostrar los botones correctos en el navbar
 watch(useAuthStore, () => {

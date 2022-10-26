@@ -8,7 +8,7 @@
 
                     <div class="column is-full mt-3">
                         <p class="title is-2 has-text-warning home-title">Boost productivity with Posty</p>
-                        <p>The secure post-it sharing and productivity solution that employees and IT admins trust</p>
+                        <p class="mt-3 mb-3">The secure post-it sharing and productivity solution that employees and IT admins trust</p>
                         <div class="is-flex is-align-items-center buttons">
                             <RouterLink v-if="!alreadyLogged" class="button is-warning" :to="{name: 'signup'}">
                                 <strong>Sign up</strong>
@@ -74,10 +74,10 @@
 
             <div v-if="isLoaded && alreadyLogged" class="columns is-multiline">
 
-                <div v-for="task in useTaskStore.tasks.data" class="column is-3 box task-card">
+                <div @mouseover.self="hoverCenterTask" v-for="task in useTaskStore.tasks.data" class="column is-4 box task-card">
                     <div class="is-flex is-justify-content-center is-flex-direction-column">
-                        <textarea @focusout="initEditTaskTitle(task.id, task.title)" v-model="task.title" class="title titleCard is-6 taskCards" :style="task.done ? 'text-decoration: line-through;' : ''"></textarea>
-                        <textarea @focusout="initEditTaskDescription(task.id, task.description)" v-model="task.description" class="descriptionCard is-6 taskCards" :style="task.done ? 'text-decoration: line-through;' : ''"></textarea>
+                        <textarea @focusout="initEditTaskTitle(task.id, task.title)" v-model="task.title" class="title titleCard is-6 noborder-textarea" :style="task.done ? 'text-decoration: line-through;' : ''"></textarea>
+                        <textarea @focusout="initEditTaskDescription(task.id, task.description)" v-model="task.description" class="descriptionCard is-6 noborder-textarea" :style="task.done ? 'text-decoration: line-through;' : ''"></textarea>
                     </div>
 
                     <div class="is-flex is-justify-content-center">
@@ -161,16 +161,32 @@ const initDeleteTask = (taskId) => {
 const initEditTaskTitle = (taskId, title) => {
     useTaskStore.updateTitle(taskId, title);
     updateTitle(taskId, title);
-    console.log(taskId);
 }
 
 // update description of a task
 const initEditTaskDescription = (taskId, description) => {
     useTaskStore.updateDescription(taskId, description);
     updateDescription(taskId, description);
-    console.log(taskId);
 }
 
+const hoverCenterTask = (event) => {
+    /*const x = window.innerWidth / 2;
+    const y = window.innerHeight / 2;
+    console.log(event.target);
+
+    let elem = event.target.querySelector("div");
+    let rect = event.target.getBoundingClientRect();
+    console.log(rect.x);
+    for (const key in rect) {
+        if (typeof rect[key] !== 'function') {
+            console.log(`${key} : ${rect[key]}`);
+        }
+    }
+    event.target.style.transform = "scale(1.2)";
+
+    event.target.style.transform = `translate(${rect.x - x},-10%)`;*/
+
+}
 </script>
 <!-- END SCRIPT -->
 <!-- START STYLE -->

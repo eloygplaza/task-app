@@ -1,54 +1,59 @@
 <!-- START TEMPLATE -->
 <template>
 
-    <div class="container mt-3">
+    <div class="home-background">
 
-        <div class="columns">
-            
-            <!-- formulario login -->
-            <div v-if="!alreadyLogged" class="column is-12 is-desktop">
-                <h1 class="title is-1">Login</h1>
+        <div class="container mt-3">
+
+            <div class="columns">
                 
-                <form>
+                <!-- formulario login -->
+                <div v-if="!alreadyLogged" class="column is-12 is-desktop">
+                    <h1 class="title is-1">Login</h1>
+                    
+                    <form>
 
-                    <div class="field">
-                        <label class="label">Email</label>
-                        <div class="control has-icons-left has-icons-right">
-                            <input v-model="emailLogin" class="input" type="email" placeholder="Write your lovely email" required>
-                            <span class="icon is-small is-left">
-                            <i class="fas fa-envelope"></i>
-                            </span>
-                            <span class="icon is-small is-right">
-                            </span>
+                        <div class="field">
+                            <label class="label">Email</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input v-model="emailLogin" class="input" type="email" placeholder="Write your lovely email" required>
+                                <span class="icon is-small is-left">
+                                <i class="fas fa-envelope"></i>
+                                </span>
+                                <span class="icon is-small is-right">
+                                </span>
+                            </div>
+                            <p class="help email"></p>
                         </div>
-                        <p class="help email"></p>
-                    </div>
 
-                    <div class="field">
-                        <label class="label">Password</label>
-                        <div class="control has-icons-left has-icons-right">
-                            <input v-model="passwordLogin" class="input" type="password" placeholder="Write your best password" required>
-                            <span class="icon is-small is-left">
-                            <i class="fas fa-user"></i>
-                            </span>
-                            <span class="icon is-small is-right">
-                            </span>
+                        <div class="field">
+                            <label class="label">Password</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input v-model="passwordLogin" class="input" type="password" placeholder="Write your best password" required>
+                                <span class="icon is-small is-left">
+                                <i class="fas fa-user"></i>
+                                </span>
+                                <span class="icon is-small is-right">
+                                </span>
+                            </div>
+                            <p class="help password"></p>
                         </div>
-                        <p class="help password"></p>
-                    </div>
 
-                    <div class="field is-grouped">
-                        <div class="control">
-                            <button type="submit" class="button is-link" @click.prevent="initLogin(emailLogin, passwordLogin)">Submit</button>
+                        <div class="field is-grouped">
+                            <div class="control">
+                                <button type="submit" class="button is-link" @click.prevent="initLogin(emailLogin, passwordLogin)">Submit</button>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                    
+                </div>
                 
             </div>
-            
+
         </div>
 
     </div>
+
 </template>
 <!-- END TEMPLATE -->
 <!-- START SCRIPT -->
@@ -59,18 +64,18 @@ import { authStore } from '../store/auth';
 
 const useAuthStore = authStore();
 let alreadyLogged = ref(useAuthStore.isAuth);
-console.log(alreadyLogged.value);
+//console.log(alreadyLogged.value);
 
 onMounted(() => {
-  console.log(window.location.href.split("/"));
+  //console.log(window.location.href.split("/"));
   if(window.location.href.split("/")[4] != 'login' && window.location.href.split("/")[4] != 'signup'){
     const app = document.querySelector("#app");
-    console.log(app);
+    //console.log(app);
     app.className += ' no-before';
   }
   else {
     const app = document.querySelector("#app");
-    console.log(app);
+    //console.log(app);
     app.className = '';
   }
 });
@@ -82,9 +87,9 @@ watch(useAuthStore, () => {
 
 // hace login supabase
 const initLogin = async (emailLogin, passwordLogin) => {
-    // login supabase
-    const res = await login(emailLogin, passwordLogin);
-    console.log(res.data.user);
+// login supabase
+const res = await login(emailLogin, passwordLogin);
+    //console.log(res.data.user);
     // si no se hace bien el login dara error
     // guardar login store
     if(res.data.user != null) {

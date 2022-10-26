@@ -1,5 +1,7 @@
 <!-- START TEMPLATE -->
 <template>
+    
+    <div class="home-background">
 
         <div class="container mt-3">
 
@@ -61,6 +63,7 @@
             </div>
 
         </div>
+    </div>
 
 </template>
 <!-- END TEMPLATE -->
@@ -78,12 +81,12 @@ onMounted(() => {
   console.log(window.location.href.split("/"));
   if(window.location.href.split("/")[4] != 'login' && window.location.href.split("/")[4] != 'signup'){
     const app = document.querySelector("#app");
-    console.log(app);
+    //console.log(app);
     app.className += ' no-before';
   }
   else {
     const app = document.querySelector("#app");
-    console.log(app);
+    //console.log(app);
     app.className = '';
   }
 });
