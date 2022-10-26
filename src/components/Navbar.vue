@@ -4,7 +4,7 @@
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
             <RouterLink class="navbar-item" :to="{name: 'home'}">
-                <img src="../assets/logo posty.png" alt="logo-home">
+                <img src="../assets/logo-posty.png" alt="logo-home">
             </RouterLink>
 
             <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
