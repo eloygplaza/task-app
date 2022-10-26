@@ -6,7 +6,7 @@
         <div class="columns">
             
             <!-- formulario login -->
-            <div v-if="!alreadyLogged" class="column 12 is-desktop">
+            <div v-if="!alreadyLogged" class="column is-12 is-desktop">
                 <h1 class="title is-1">Login</h1>
                 
                 <form>
@@ -14,7 +14,7 @@
                     <div class="field">
                         <label class="label">Email</label>
                         <div class="control has-icons-left has-icons-right">
-                            <input v-model="emailLogin" class="input" type="email" placeholder="Introduce tu mejor correo" required>
+                            <input v-model="emailLogin" class="input" type="email" placeholder="Write your lovely email" required>
                             <span class="icon is-small is-left">
                             <i class="fas fa-envelope"></i>
                             </span>
@@ -27,7 +27,7 @@
                     <div class="field">
                         <label class="label">Password</label>
                         <div class="control has-icons-left has-icons-right">
-                            <input v-model="passwordLogin" class="input" type="password" placeholder="Introduce tu mejor contraseña" required>
+                            <input v-model="passwordLogin" class="input" type="password" placeholder="Write your best password" required>
                             <span class="icon is-small is-left">
                             <i class="fas fa-user"></i>
                             </span>
