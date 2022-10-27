@@ -1,0 +1,1 @@
+import{_ as e,c as t,e as s}from"./index.404b82b5.js";const c={},n={class:"title is-flex is-align-items-center is-justify-content-center"};function r(o,i){return t(),s("div",n,"Work in progress")}const a=e(c,[["render",r]]);export{a as default};
