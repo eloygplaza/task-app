@@ -1,7 +1,14 @@
-# Vue 3 + Vite
+# Task App
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Task App created with Vue, Bulma CSS, Pinia/Pinia Persist.
 
-## Recommended IDE Setup
+The app it's connected to Supabase to save and retrievedata about the registeres users and their tasks.
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+When you login/register, you can add, edit, mark as done and delete task at your will.
+
+Maybe some bonus will be added in the future.
+
+I hope you enjoy it.
+
+## Link Demo
+[https://eloygplaza.github.io/task-app/](https://eloygplaza.github.io/task-app/)
