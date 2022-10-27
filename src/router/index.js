@@ -23,6 +23,11 @@ const routes = [
     name: "login",
     component: () => import("../views/Login.vue"),
   },
+  {
+    path: "/task-app/profile",
+    name: "profile",
+    component: () => import("../views/Profile.vue"),
+  },
 ];
 
 // 3. Create the router instance and pass the `routes` option

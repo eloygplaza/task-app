@@ -23,8 +23,6 @@
                 </div>
             </div>
             
-            
-
         </div>
 
         <div class="container mt-3">
@@ -86,7 +84,7 @@
                                 <i class="fa-solid fa-check"></i>
                             </span>
                         </button>
-                        <!-- TODO crear un estilo css para que al hacer click en borrar la task se absorva en direccion a la basura -->
+                        <!-- TODO crear un estilo css para que al hacer click en borrar la task se absorba en direccion a la basura -->
                         <button class="button is-danger is-outlined" @click="initDeleteTask(task.id)">
                             <span class="icon is-small">
                                 <i class="fa-solid fa-trash-can"></i>
