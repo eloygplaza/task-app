@@ -2,9 +2,9 @@
 
 Task App created with Vue, Bulma CSS, Pinia/Pinia Persist.
 
-The app it's connected to Supabase to save and retrievedata about the registeres users and their tasks.
+The app it's connected to Supabase to save and retrieve data about the registered users and their tasks.
 
-When you login/register, you can add, edit, mark as done and delete task at your will.
+When you login/register, you can add, edit, mark as done and delete a task at your will.
 
 Maybe some bonus will be added in the future.
 
