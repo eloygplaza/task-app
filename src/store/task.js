@@ -12,8 +12,11 @@ export const taskStore = defineStore("taskStore", {
   ],
   actions: {
     insertTask(userId, title, description) {
+      const checkFirstTask =
+        this.tasks.data.length == 0 ? 1 : this.tasks.data.at(0).id + 1;
+
       this.tasks.data.unshift({
-        id: this.tasks.data.at(0).id + 1,
+        id: checkFirstTask,
         created_at: Date.now,
         user_id: userId,
         title: title,
